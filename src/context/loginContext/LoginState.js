@@ -1,13 +1,13 @@
-import { useReducer } from "react-transition-group/node_modules/@types/react";
+import { useReducer } from 'react';
 import LoginContext from "./LoginContext";
 import LoginReducer from "./LoginReducer";
 
-const LoginState = (props: any) => {
+const LoginState = (props) => {
     const initialState = {
         loading: false
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    // eslint-disable-next-line no-unused-vars
     const [state, dispatch] = useReducer(LoginReducer, initialState);
 
     return (

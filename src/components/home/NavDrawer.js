@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -20,7 +20,10 @@ import MailIcon from '@material-ui/icons/Mail';
 import ProtectedRoute from '../../route/ProtectedRoute';
 import HomePage from '../../pages/HomePage';
 import FormPage from '../../pages/FormPage';
-
+import NotFound from '../../pages/NotFound';
+import {
+    Switch,
+} from "react-router-dom";
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -82,10 +85,11 @@ const useStyles = makeStyles((theme) => ({
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
+        marginTop: '3%'
     },
 }));
 
-export default function MiniDrawer() {
+export default function NavDrawer() {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -153,10 +157,11 @@ export default function MiniDrawer() {
                 </List>
             </Drawer>
             <main className={classes.content}>
-                <Fragment>
-                    <ProtectedRoute path='/' component={HomePage} isAuth={true} />
+                <Switch>
+                    <ProtectedRoute exact path='/' component={HomePage} isAuth={true} />
                     <ProtectedRoute path='/new-datasource' component={FormPage} isAuth={true} />
-                </Fragment>
+                    <ProtectedRoute component={NotFound} isAuth={true} />
+                </Switch>
             </main>
         </div>
     );

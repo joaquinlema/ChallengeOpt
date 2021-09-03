@@ -1,6 +1,6 @@
-import { useReducer } from "react-transition-group/node_modules/@types/react";
 import HomeContext from "./HomeContext";
 import HomeReducer from "./HomeReducer";
+import { useReducer } from 'react';
 
 const HomeState = (props) => {
     const initialState = {
@@ -13,6 +13,7 @@ const HomeState = (props) => {
 
     };
 
+    // eslint-disable-next-line no-unused-vars
     const [state, dispatch] = useReducer(HomeReducer, initialState);
 
     const setLoading = (status) => dispatch => {
