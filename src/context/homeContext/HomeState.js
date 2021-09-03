@@ -13,7 +13,6 @@ const HomeState = (props) => {
 
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [state, dispatch] = useReducer(HomeReducer, initialState);
 
     const setLoading = (status) => dispatch => {
@@ -32,7 +31,9 @@ const HomeState = (props) => {
 
     return (
         <HomeContext.Provider value={{
-            loading :state.loading
+            loading :state.loading,
+            setError,
+            setLoading
         }}>
             {props.children}
         </HomeContext.Provider>

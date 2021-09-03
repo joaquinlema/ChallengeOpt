@@ -1,22 +1,18 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
     BrowserRouter as Router,
     Switch,
-    Route,
-    useHistory
 } from "react-router-dom";
 import ProtectedRoute from './ProtectedRoute';
+import HomePage from '../pages/HomePage';
+import FormPage from '../pages/FormPage';
 
 const AppRoute = () => {
 
-    const history = useHistory();
-
-    useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
     return (
         <Switch>
+            <ProtectedRoute path='/' component={HomePage} isAuth={true} />
+            <ProtectedRoute path='/new-datasource' component={FormPage} isAuth={true} />
             {/* <Route exact={true} path={["/", "/Login"]} component={Login} />
             <ProtectedRoute path='/App/Common/' component={AppContainerPage} isAuth={isAuth} />
             <ProtectedRoute path='/App/Transaccion/' component={TransaccionesContainerPage} isAuth={isAuth} />
