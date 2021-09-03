@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { devUrl } from '../../constants/Types';
+import { devUrl, token } from '../../constants/Types';
 
 const axiosInstance = axios.create({
   baseURL: `${devUrl}`,
@@ -7,14 +7,12 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(function (config) {
 
-//  const token = JWT.getTokken();
-
-//   if(token){
-//     config.headers.Authorization =  'Bearer '+ JWT.getTokken();
-//   }
-//   else{
-//     config.headers.Authorization =  null;
-//   }
+  if(token){
+    config.headers.Authorization =  `Bearer ${token}` ;
+  }
+  else{
+    config.headers.Authorization =  null;
+  }
 
   return config;
 }, function (error) {
