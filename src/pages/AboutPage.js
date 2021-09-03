@@ -20,17 +20,17 @@ const About = () => {
         },
         {
             titulo: 'React Context API',
-            descripcion: 'Utilizado para manejo de estados en Front End',
+            descripcion: 'Utilizado para manejo de estados',
             image: contextApiLogo
         },
         {
             titulo: 'Axios',
-            descripcion: 'Utilizado para manejo de estados en Front End',
+            descripcion: 'Utilizado para las peticiones REST',
             image: axios
         },
         {
             titulo: 'Formik',
-            descripcion: 'Utilizado para formulararios en Front End',
+            descripcion: 'Utilizado para formularios',
             image: formiklogo
         },
         {
@@ -40,17 +40,17 @@ const About = () => {
         },
         {
             titulo: 'Material UI',
-            descripcion: 'Utilizado para componentes visuales Front End',
+            descripcion: 'Utilizado para componentes visuales',
             image: matlogo
         },
         {
             titulo: 'Mui Datatable',
-            descripcion: 'Utilizado para componentes visuales Front End',
+            descripcion: 'Utilizado para Listar datos en tabla',
             image: muilogo
         },
         {
             titulo: 'React Router Dom',
-            descripcion: 'Utilizado para componentes visuales Front End',
+            descripcion: 'Utilizado para ruteo',
             image: routerlogo
         }
     ]
