@@ -16,6 +16,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PhonelinkSetupRoundedIcon from '@material-ui/icons/PhonelinkSetupRounded';
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
 import AppRoute from '../../route/AppRoute';
 import { Link } from 'react-router-dom';
 
@@ -143,6 +144,10 @@ export default function NavDrawer() {
                 </div>
                 <Divider />
                 <List>
+                    <ListItem button component={Link} to={`/`}>
+                        <ListItemIcon><HomeRoundedIcon /></ListItemIcon>
+                        <ListItemText primary={'Home'} />
+                    </ListItem>
                     <ListItem button component={Link} to={`/About`}>
                         <ListItemIcon><PhonelinkSetupRoundedIcon /></ListItemIcon>
                         <ListItemText primary={'About'} />
