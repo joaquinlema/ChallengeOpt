@@ -1,4 +1,4 @@
-import { GET_DATASOURCES, SET_ERROR } from "../../constants/Types";
+import { GET_DATASOURCES, SET_ERROR, SET_CLOSE_SNACK } from "../../constants/Types";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state, action) => {
@@ -13,8 +13,17 @@ export default (state, action) => {
             return {
                 ...state,
                 error: true,
-                errorMsj: action.payload,
-                snackStatus:true
+                snackmsj: action.payload,
+                snackStatus:true,
+                snackSeverity:'error'
+            }
+        case SET_CLOSE_SNACK:
+            return {
+                ...state,
+                error: false,
+                snackmsj: '',
+                snackStatus:false,
+                snackSeverity:'info'
             }
         default:
             return {

@@ -55,7 +55,7 @@ export default function DataSourceTable() {
         search: false,
         confirmFilters: false,
         viewColumns: false,
-        pagination: true,
+        pagination: false,
         enableNestedDataAccess: '.',
         // customToolbar: () => <CustomToolBar />,
     };
