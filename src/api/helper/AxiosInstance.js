@@ -3,8 +3,10 @@ import { devUrl, token } from '../../constants/Types';
 
 const axiosInstance = axios.create({
   baseURL: `${devUrl}`,
+  headers: {'Access-Control-Allow-Origin':'*'}
 });
 
+axiosInstance.defaults.headers.common['Authorization'] = token;
 axiosInstance.interceptors.request.use(function (config) {
 
   if(token){

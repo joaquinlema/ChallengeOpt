@@ -9,7 +9,7 @@ const HomePage = () => {
     const {setLoading,getDataSources} = homeContext;
 
     useEffect(() => {
-        //setLoading();
+        setLoading();
         getDataSources();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
