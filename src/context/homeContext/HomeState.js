@@ -33,6 +33,7 @@ const HomeState = (props) => {
     return (
         <HomeContext.Provider value={{
             loading :state.loading,
+            dataSourceList:state.dataSourceList,
             setError,
             setLoading
         }}>

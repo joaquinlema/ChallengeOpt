@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import MUIDataTable from "mui-datatables";
 import {Grid } from '@material-ui/core';
 import HomeContext from '../../context/homeContext/HomeContext';
+import CustomToolBar from './CustomToolBar';
 
 const columns = [
     {
@@ -36,28 +37,34 @@ const columns = [
     },
 ]
 
-const options = {
-    selectableRows: 'none',
-    download: false,
-    print: false,
-    filter: false,
-    search: false,
-    confirmFilters: false,
-    viewColumns: false,
-    pagination: true,
-    enableNestedDataAccess: '.',
-};
 
 export default function DataSourceTable() {
-
+    
     const homeContext = useContext(HomeContext);
-    const { listadoRespuestas } = homeContext;
+    const { dataSourceList } = homeContext;
+    const options = {
+        customToolbar: () => {
+            return (
+              <CustomToolBar />
+            );
+          },
+        selectableRows: 'none',
+        download: false,
+        print: false,
+        filter: false,
+        search: false,
+        confirmFilters: false,
+        viewColumns: false,
+        pagination: true,
+        enableNestedDataAccess: '.',
+        // customToolbar: () => <CustomToolBar />,
+    };
 
     return (
         <Grid item xs={12}>
             <MUIDataTable
                 title={"DataSources"}
-                data={listadoRespuestas}
+                data={dataSourceList}
                 columns={columns}
                 options={options}
             />
