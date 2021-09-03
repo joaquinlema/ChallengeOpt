@@ -12,10 +12,9 @@ const AppRoute = () => {
 
     return (
         <Switch>
+            {/* <Route exact={true} path={["/", "/Login"]} component={Login} />*/}
             <ProtectedRoute path='/' component={HomePage} isAuth={true} />
             <ProtectedRoute path='/new-datasource' component={FormPage} isAuth={true} />
-            {/* <Route exact={true} path={["/", "/Login"]} component={Login} />
-             */}
             <ProtectedRoute component={NotFound} isAuth={true} />
         </Switch>
     );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -17,6 +17,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import ProtectedRoute from '../../route/ProtectedRoute';
+import HomePage from '../../pages/HomePage';
+import FormPage from '../../pages/FormPage';
 
 const drawerWidth = 240;
 
@@ -150,7 +153,10 @@ export default function MiniDrawer() {
                 </List>
             </Drawer>
             <main className={classes.content}>
-                        
+                <Fragment>
+                    <ProtectedRoute path='/' component={HomePage} isAuth={true} />
+                    <ProtectedRoute path='/new-datasource' component={FormPage} isAuth={true} />
+                </Fragment>
             </main>
         </div>
     );
