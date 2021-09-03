@@ -16,13 +16,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PhonelinkSetupRoundedIcon from '@material-ui/icons/PhonelinkSetupRounded';
-import ProtectedRoute from '../../route/ProtectedRoute';
-import HomePage from '../../pages/HomePage';
-import FormPage from '../../pages/FormPage';
-import NotFound from '../../pages/NotFound';
-import {
-    Switch,
-} from "react-router-dom";
+import AppRoute from '../../route/AppRoute';
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -123,7 +118,7 @@ export default function NavDrawer() {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
-                        Mini variant drawer
+                        Challenge OPTIMOUS
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -154,11 +149,7 @@ export default function NavDrawer() {
                 </List>
             </Drawer>
             <main className={classes.content}>
-                <Switch>
-                    <ProtectedRoute exact path='/' component={HomePage} isAuth={true} />
-                    <ProtectedRoute path='/new-datasource' component={FormPage} isAuth={true} />
-                    <ProtectedRoute component={NotFound} isAuth={true} />
-                </Switch>
+                <AppRoute />
             </main>
         </div>
     );

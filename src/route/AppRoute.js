@@ -5,14 +5,15 @@ import {
 } from "react-router-dom";
 import ProtectedRoute from './ProtectedRoute';
 import NotFound from '../pages/NotFound';
-import NavDrawer from '../components/home/NavDrawer';
+import HomePage from '../pages/HomePage';
+import FormPage from '../pages/FormPage';
 
 const AppRoute = () => {
 
     return (
         <Switch>
-            {/* <Route exact={true} path={["/", "/Login"]} component={Login} />*/}
-            <ProtectedRoute path='/' component={NavDrawer} isAuth={true} />
+            <ProtectedRoute exact path='/' component={HomePage} isAuth={true} />
+            <ProtectedRoute path='/new-datasource' component={FormPage} isAuth={true} />
             <ProtectedRoute component={NotFound} isAuth={true} />
         </Switch>
     );
