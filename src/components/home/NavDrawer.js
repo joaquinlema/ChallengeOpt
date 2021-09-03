@@ -17,6 +17,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import PhonelinkSetupRoundedIcon from '@material-ui/icons/PhonelinkSetupRounded';
 import AppRoute from '../../route/AppRoute';
+import { Link } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -142,7 +143,7 @@ export default function NavDrawer() {
                 </div>
                 <Divider />
                 <List>
-                    <ListItem button >
+                    <ListItem button component={Link} to={`/About`}>
                         <ListItemIcon><PhonelinkSetupRoundedIcon /></ListItemIcon>
                         <ListItemText primary={'About'} />
                     </ListItem>

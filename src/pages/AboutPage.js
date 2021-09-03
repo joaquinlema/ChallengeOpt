@@ -1,57 +1,64 @@
 import { Grid, Typography } from '@material-ui/core';
 import React from 'react';
 import CardAbout from '../components/about/CardAbout';
+import reactlogo from '../img/react.png';
+import contextApiLogo from '../img/contextApi.png';
+import axios from '../img/axios.jpg';
+import formiklogo from '../img/formik.png';
+import gitlogo from'../img/github.png'
+import matlogo from'../img/material.png'
+import muilogo from'../img/muidata.png'
+import routerlogo from'../img/reactrouter.jpg'
 
 const About = () => {
 
-    // eslint-disable-next-line no-unused-vars
     const dataAbout = [
         {
             titulo: 'React JS',
             descripcion: 'Utilizado para manejo de Ui en Front End',
-            image: require('../img/react.png')
+            image: reactlogo
         },
         {
             titulo: 'React Context API',
             descripcion: 'Utilizado para manejo de estados en Front End',
-            image: require('../img/contextApi.png')
+            image: contextApiLogo
         },
         {
             titulo: 'Axios',
             descripcion: 'Utilizado para manejo de estados en Front End',
-            image: require('../img/axios.jpg')
+            image: axios
         },
         {
             titulo: 'Formik',
             descripcion: 'Utilizado para formulararios en Front End',
-            image: require('../img/formik.png')
+            image: formiklogo
         },
         {
             titulo: 'GitHUB',
             descripcion: 'Utilizado para control de versiones',
-            image: require('../img/github.png')
+            image: gitlogo
         },
         {
             titulo: 'Material UI',
             descripcion: 'Utilizado para componentes visuales Front End',
-            image: require('../img/material.png')
+            image: matlogo
         },
         {
             titulo: 'Mui Datatable',
             descripcion: 'Utilizado para componentes visuales Front End',
-            image: require('../img/muidata.png')
+            image: muilogo
         },
         {
             titulo: 'React Router Dom',
             descripcion: 'Utilizado para componentes visuales Front End',
-            image: require('../img/reactrouter.jpg')
+            image: routerlogo
         }
     ]
 
     return (
-        <Grid container spacing={2}>
+        <Grid container spacing={2} style={{marginTop:'3%'}}>
             <Grid item xs={12}>
-                <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+                <Typography component="h3" variant="h3" align="center" color="textPrimary" gutterBottom>
                     About This App
                 </Typography>
                 <Typography variant="h5" align="center" color="textSecondary" paragraph>

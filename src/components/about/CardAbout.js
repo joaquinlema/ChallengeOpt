@@ -24,8 +24,8 @@ export default function CardAbout({titulo, descripcion, image}) {
         <CardMedia
           component="img"
           className={classes.media}
-          image={image}
-          title="Contemplative Reptile"
+          src={image}
+          title="NO pic"
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
