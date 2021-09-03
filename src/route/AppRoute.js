@@ -6,6 +6,7 @@ import {
 import ProtectedRoute from './ProtectedRoute';
 import HomePage from '../pages/HomePage';
 import FormPage from '../pages/FormPage';
+import NotFound from '../pages/NotFound';
 
 const AppRoute = () => {
 
@@ -14,10 +15,8 @@ const AppRoute = () => {
             <ProtectedRoute path='/' component={HomePage} isAuth={true} />
             <ProtectedRoute path='/new-datasource' component={FormPage} isAuth={true} />
             {/* <Route exact={true} path={["/", "/Login"]} component={Login} />
-            <ProtectedRoute path='/App/Common/' component={AppContainerPage} isAuth={isAuth} />
-            <ProtectedRoute path='/App/Transaccion/' component={TransaccionesContainerPage} isAuth={isAuth} />
-            <ProtectedRoute path='/App/' component={NotFound} isAuth={isAuth} />
-            <ProtectedRoute component={NotFound} isAuth={isAuth} /> */}
+             */}
+            <ProtectedRoute component={NotFound} isAuth={true} />
         </Switch>
     );
 }
