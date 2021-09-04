@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { GET_CONNECTION, SET_ERROR, SET_LOADING } from "../../constants/Types";
+import { GET_CONNECTION, SAVE_DATASOURCE, SET_ERROR, SET_LOADING } from "../../constants/Types";
 import ConnectionsService from "../../api/service/Connections.service";
 import FormContext from "./FormContext";
 import FormReducer from "./FormReducer";
@@ -37,7 +37,7 @@ const FormState = (props) => {
             const { data } = await DataSourceService.create(newDataSource);
 
             dispatch({
-                type: GET_CONNECTION,
+                type: SAVE_DATASOURCE,
                 payload: data.data
             });
         } catch (error) {

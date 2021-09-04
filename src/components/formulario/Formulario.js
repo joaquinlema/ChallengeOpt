@@ -27,11 +27,11 @@ const useStyles = makeStyles((theme) => ({
 const Formulario = () => {
     const classes = useStyles();
     const formContext = useContext(FormContext);
-    const { connectionList,getConnections } = formContext;
+    const { connectionList, getConnections, saveDataSource } = formContext;
 
     useEffect(() => {
         getConnections();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -53,7 +53,20 @@ const Formulario = () => {
                 }}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                     setSubmitting(true);
-
+                    let dataSourceSchema = {
+                        "title": "test",
+                        "code": "test",
+                        "connection_id": 1,
+                        "query": "SELECT * FROM users where first_name LIKE \"%\":lookup\"%\"",
+                        "parameters": [
+                            {
+                                "name": "lookup",
+                                "type": "string",
+                                "default_value": "test"
+                            }
+                        ]
+                    };
+                    saveDataSource(dataSourceSchema);
                     setTimeout(() => {
                         alert('guardado')
                         setSubmitting(false);
