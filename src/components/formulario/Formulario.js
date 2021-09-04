@@ -1,6 +1,6 @@
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { Fragment, useContext, useEffect } from 'react';
 import { Formik, Form, Field, FieldArray } from 'formik';
-import { Button, LinearProgress, Grid, Box, Typography, FormControl, InputLabel, MenuItem, makeStyles, IconButton } from '@material-ui/core';
+import { Button, LinearProgress, Grid, Box, Typography, FormControl, InputLabel, MenuItem, makeStyles, IconButton, FormHelperText } from '@material-ui/core';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import Divider from '@material-ui/core/Divider';
@@ -8,6 +8,9 @@ import { Select, TextField } from 'formik-material-ui';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FormContext from '../../context/formContext/FormContext';
 import HomeContext from '../../context/homeContext/HomeContext';
+import SaveIcon from '@material-ui/icons/Save';
+import AddCircleOutlineRoundedIcon from '@material-ui/icons/AddCircleOutlineRounded';
+import * as Yup from "yup";
 
 const useStyles = makeStyles((theme) => ({
     grid: {
@@ -21,7 +24,10 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         marginTop: '1%',
         marginBottom: '1%'
-    }
+    },
+    button: {
+        margin: theme.spacing(1),
+      },
 }));
 
 
@@ -37,6 +43,21 @@ const Formulario = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
+    const SignupSchema = Yup.object().shape({
+        title: Yup.string().min(1, 'Too Short!').max(70, 'Too Long!').required('Required'),
+        code: Yup.string().min(1, 'Too Short!').max(70, 'Too Long!').required('Required'),
+        connection: Yup.string().required('Required'),
+        query: Yup.string().required('Required'),
+        paramList: Yup.array()
+        .of(
+          Yup.object().shape({
+            name: Yup.string().min(1, 'too short').required('Required'), 
+            type: Yup.string().required('Required'), 
+            default_value: Yup.string().min(1, 'too short').required('Required'),
+          })
+        ).required('Must have parameters').min(1, 'Minimum of 1 Parameter'),
+    });
+
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Formik
@@ -47,18 +68,11 @@ const Formulario = () => {
                     query: '',
                     paramList: [{
                         "name": "",
-                        "type": "string",
+                        "type": '',
                         "default_value": ""
                     }],
-                    paramName: '',
-                    paramType: 'String',
-                    paramDefaultValue: ''
                 }}
-                validate={values => {
-                    let errors = {};
-
-                    return errors;
-                }}
+                validationSchema={SignupSchema}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                     setSubmitting(true);
                     let dataSourceSchema =
@@ -67,13 +81,7 @@ const Formulario = () => {
                         "code": values.code,
                         "connection_id": Number(values.connection),
                         "query": values.query,
-                        "parameters": [
-                            {
-                                "name": "lookup",
-                                "type": "string",
-                                "default_value": "test"
-                            }
-                        ]
+                        "parameters": values.paramList
                     }
                     saveDataSource(dataSourceSchema);
                     setTimeout(() => {
@@ -114,6 +122,7 @@ const Formulario = () => {
                                             ))
                                             }
                                         </Field>
+                                        <FormHelperText className='Mui-error'>{(errors.connection && touched.connection) && errors.connection}</FormHelperText >
                                     </FormControl>
                                 </Grid>
                             </Grid>
@@ -138,11 +147,14 @@ const Formulario = () => {
                                         variant="contained"
                                         color="default"
                                         disabled={isSubmitting}
-                                        onClick={() => {values.paramList.push({
-                                            "name": "",
-                                            "type": "string",
-                                            "default_value": ""
-                                        }); setValues(values)}}
+                                        startIcon={<AddCircleOutlineRoundedIcon />}
+                                        onClick={() => {
+                                            values.paramList.push({
+                                                "name": "",
+                                                "type": "",
+                                                "default_value": ""
+                                            }); setValues(values)
+                                        }}
                                     >
                                         Add Parameter
                                     </Button>
@@ -168,7 +180,7 @@ const Formulario = () => {
                                                                     <InputLabel htmlFor="type-simple">Type</InputLabel>
                                                                     <Field
                                                                         component={Select}
-                                                                        name={`paramList.${index}.type`}
+                                                                        name={`paramList[${index}].type`}
                                                                         inputProps={{
                                                                             id: 'type-simple',
                                                                         }}
@@ -177,6 +189,7 @@ const Formulario = () => {
                                                                         <MenuItem value={'Integer'}>Integer</MenuItem>
                                                                         <MenuItem value={'date'}>date</MenuItem>
                                                                     </Field>
+                                                                    {/* <FormHelperText  className='Mui-error'>{(`errors.paramList[${index}].type` && `touched.paramList[${index}].type`) && `errors.paramList[${index}].type`}</FormHelperText> */}
                                                                 </FormControl>
                                                             </Grid>
                                                             <Grid item xs={3} md={3} lg={3}>
@@ -210,6 +223,9 @@ const Formulario = () => {
                                 <Button
                                     variant="contained"
                                     color="primary"
+                                    size="large"
+                                    className={classes.button}
+                                    startIcon={<SaveIcon />}
                                     disabled={isSubmitting}
                                     onClick={submitForm}
                                 >

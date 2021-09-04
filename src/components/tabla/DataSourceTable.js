@@ -1,9 +1,8 @@
 import React, { useContext } from 'react'
 import MUIDataTable from "mui-datatables";
-import { Grid, IconButton } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 import HomeContext from '../../context/homeContext/HomeContext';
 import CustomToolBar from './CustomToolBar';
-import EditRoundedIcon from '@material-ui/icons/EditRounded';
 
 const options = {
     customToolbar: () => {
@@ -63,22 +62,22 @@ export default function DataSourceTable() {
                 }
             }
         },
-        {
-            name: "id",
-            label: " ",
-            options: {
-                filter: false,
-                sort: false,
-                setCellProps: () => ({ style: { fontSize: 'larger', fontWeight: 600, display: 'flex', justifyContent: 'right', flexDirection: 'row-reverse' } }),
-                customBodyRender: (value, tableMeta, updateValue) => {
-                    return (
-                        <IconButton aria-label="edit" onClick={() => alert(tableMeta.currentTableData, tableMeta.rowIndex)}>
-                            <EditRoundedIcon fontSize="small" />
-                        </IconButton>
-                    );
-                }
-            }
-        },
+        // {
+        //     name: "id",
+        //     label: " ",
+        //     options: {
+        //         filter: false,
+        //         sort: false,
+        //         setCellProps: () => ({ style: { fontSize: 'larger', fontWeight: 600, display: 'flex', justifyContent: 'right', flexDirection: 'row-reverse' } }),
+        //         customBodyRender: (value, tableMeta, updateValue) => {
+        //             return (
+        //                 <IconButton aria-label="edit" onClick={() => alert(tableMeta.currentTableData, tableMeta.rowIndex)}>
+        //                     <EditRoundedIcon fontSize="small" />
+        //                 </IconButton>
+        //             );
+        //         }
+        //     }
+        // },
     ];
 
     return (
