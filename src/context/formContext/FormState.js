@@ -10,7 +10,7 @@ const FormState = (props) => {
         loading: false,
         error: false,
         snackmsj: '',
-        dataSourceList: [],
+        connectionList: [],
         snackStatus: false,
         save: false,
         snackSeverity: 'info'
@@ -63,7 +63,7 @@ const FormState = (props) => {
     const setError = (error) => {
         dispatch({
             type: SET_ERROR,
-            payload: 'ups Error'
+            payload: 'ups Error Por favor revise los campos'
         });
     }
 

@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 const Formulario = () => {
     const classes = useStyles();
     const formContext = useContext(FormContext);
-    const { connectionList, initForm, getConnections, saveDataSource } = formContext;
+    const { connectionList, initForm, getConnections, saveDataSource, save } = formContext;
 
     useEffect(() => {
         initForm();
@@ -55,23 +55,37 @@ const Formulario = () => {
                 }}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                     setSubmitting(true);
-                    let dataSourceSchema = {
+                    let dataSourceSchema = 
+                    {
                         "title": values.title,
                         "code": values.code,
-                        "connection_id": values.connection,
-                        "query": values.query,
+                        "connection_id": Number(values.connection),
+                        "query":values.query,
                         "parameters": [
-                            {
-                                "name": "lookup",
-                                "type": "string",
-                                "default_value": "test"
-                            }
+                          {
+                            "name": "lookup",
+                            "type": "string",
+                            "default_value": "test"
+                          }
                         ]
-                    };
+                      }
+                    // {
+                    //     "title": values.title,
+                    //     "code": values.code,
+                    //     "connection_id": Number(values.connection),
+                    //     "query": values.query,
+                    //     "parameters": [
+                    //         {
+                    //             "name": "lookup",
+                    //             "type": "string",
+                    //             "default_value": "test"
+                    //         }
+                    //     ]
+                    // };
                     saveDataSource(dataSourceSchema);
                     setTimeout(() => {
                         setSubmitting(false);
-                        resetForm();
+                        if(save) resetForm();
                     }, 500);
                 }}
             >
