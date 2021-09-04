@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { GET_CONNECTION, INIT_FORM, SAVE_DATASOURCE, SET_ERROR, SET_LOADING } from "../../constants/Types";
+import { GET_CONNECTION, INIT_FORM, SAVE_DATASOURCE, SET_CLOSE_SNACK, SET_ERROR, SET_LOADING } from "../../constants/Types";
 import ConnectionsService from "../../api/service/Connections.service";
 import FormContext from "./FormContext";
 import FormReducer from "./FormReducer";
@@ -9,8 +9,11 @@ const FormState = (props) => {
     const initialState = {
         loading: false,
         error: false,
-        connectionList: [],
+        snackmsj: '',
+        dataSourceList: [],
+        snackStatus: false,
         save: false,
+        snackSeverity: 'info'
     };
 
     // eslint-disable-next-line no-unused-vars
@@ -64,12 +67,22 @@ const FormState = (props) => {
         });
     }
 
+    const onCloseSnack = () => {
+        dispatch({
+            type: SET_CLOSE_SNACK,
+        });
+    };
+
     return (
         <FormContext.Provider value={{
             loading: state.loading,
             connectionList: state.connectionList,
             error: state.error,
-            save:state.save,
+            save: state.save,
+            snackmsj: state.snackmsj,
+            snackStatus: state.snackStatus,
+            snackSeverity: state.snackSeverity,
+            onCloseSnack,
             setError,
             setLoading,
             getConnections,
