@@ -35,7 +35,7 @@ const Formulario = () => {
                 initialValues={{
                     title: '',
                     code: '',
-                    connection: 'String',
+                    connection: '',
                     query: '',
                     paramList: [],
                     paramName: '',
@@ -85,7 +85,7 @@ const Formulario = () => {
                                             }}
                                         >
                                             {connectionList.length > 0 && connectionList.map(elem => (
-                                                <MenuItem value={elem}>elem</MenuItem>
+                                                <MenuItem key={elem.id} value={elem.id}>{elem.title}</MenuItem>
                                             ))
                                             }
                                         </Field>

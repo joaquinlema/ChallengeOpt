@@ -1,8 +1,8 @@
-import FormContext from "./FormContext";
-import HomeReducer from "./HomeReducer";
 import { useReducer } from 'react';
 import { GET_CONNECTION, SET_ERROR, SET_LOADING } from "../../constants/Types";
 import ConnectionsService from "../../api/service/Connections.service";
+import FormContext from "./FormContext";
+import FormReducer from "./FormReducer";
 
 const FormState = (props) => {
     const initialState = {
@@ -13,7 +13,7 @@ const FormState = (props) => {
     };
 
     // eslint-disable-next-line no-unused-vars
-    const [state, dispatch] = useReducer(HomeReducer, initialState);
+    const [state, dispatch] = useReducer(FormReducer, initialState);
 
     const getConnections = async () => {
 
