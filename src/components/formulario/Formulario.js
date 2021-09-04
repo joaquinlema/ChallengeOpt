@@ -116,13 +116,13 @@ const Formulario = () => {
                                     </Grid>
                                 </Grid>
                                 <Grid container className={classes.contenedor} spacing={2}>
-                                    <Grid item xs={4} md={4} lg={4}>
+                                    <Grid item xs={12} md={4} lg={4}>
                                         <Field className={classes.grid} component={TextField} name="title" variant="outlined" type="text" label="Title" placeholder="Title" />
                                     </Grid>
-                                    <Grid item xs={4} md={4} lg={4}>
+                                    <Grid item xs={12} md={4} lg={4}>
                                         <Field className={classes.grid} component={TextField} name="code" variant="outlined" type="text" label="Code" placeholder="Code" />
                                     </Grid>
-                                    <Grid item xs={4} md={4} lg={4}>
+                                    <Grid item xs={12} md={4} lg={4}>
                                         <FormControl className={classes.grid} variant="outlined">
                                             <InputLabel htmlFor="connection-simple">Connection</InputLabel>
                                             <Field
@@ -154,12 +154,12 @@ const Formulario = () => {
                                 </Grid>
 
                                 <Grid container className={classes.contenedor}>
-                                    <Grid item xs={1}>
+                                    <Grid item xs={6} md={1}>
                                         <Typography variant="h6" gutterBottom>
                                             Parameters
                                         </Typography>
                                     </Grid>
-                                    <Grid item xs={3}>
+                                    <Grid item xs={6} md={3}>
                                         <Button
                                             variant="contained"
                                             color="default"
@@ -174,7 +174,7 @@ const Formulario = () => {
                                                 }); setValues(values)
                                             }}
                                         >
-                                            Add Parameter
+                                            Add
                                         </Button>
                                     </Grid>
 

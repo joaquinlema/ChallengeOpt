@@ -10,6 +10,12 @@ const options = {
             <CustomToolBar />
         );
     },
+    setRowProps: (row, dataIndex, rowIndex) => {
+        let styleRow = (rowIndex % 2 === 0) ? { backgroundColor: 'whitesmoke' } : { backgroundColor : 'white' };
+        return {
+          style: styleRow,
+        };
+      },
     selectableRows: 'none',
     download: false,
     print: false,
@@ -17,7 +23,7 @@ const options = {
     search: false,
     confirmFilters: false,
     viewColumns: false,
-    pagination: false,
+    pagination: true,
     enableNestedDataAccess: '.',
     // customToolbar: () => <CustomToolBar />,
 };

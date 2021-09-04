@@ -10,9 +10,8 @@ const NewButton = () => {
             <Button
                 variant="contained"
                 color="primary"
-                endIcon={<AddCircleOutlineRoundedIcon />}
             >
-                New
+                <AddCircleOutlineRoundedIcon />
             </Button>
         </Link>
     );
