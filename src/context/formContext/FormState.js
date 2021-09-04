@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { GET_CONNECTION, SAVE_DATASOURCE, SET_ERROR, SET_LOADING } from "../../constants/Types";
+import { GET_CONNECTION, INIT_FORM, SAVE_DATASOURCE, SET_ERROR, SET_LOADING } from "../../constants/Types";
 import ConnectionsService from "../../api/service/Connections.service";
 import FormContext from "./FormContext";
 import FormReducer from "./FormReducer";
@@ -17,7 +17,6 @@ const FormState = (props) => {
     const [state, dispatch] = useReducer(FormReducer, initialState);
 
     const getConnections = async () => {
-
         try {
             const { data } = await ConnectionsService.getAll('total=false');
 
@@ -28,7 +27,12 @@ const FormState = (props) => {
         } catch (error) {
             setError(error);
         }
+    }
 
+    const initForm = () => {
+        dispatch({
+            type: INIT_FORM,
+        });
     }
 
     const saveDataSource = async (newDataSource) => {
@@ -65,10 +69,12 @@ const FormState = (props) => {
             loading: state.loading,
             connectionList: state.connectionList,
             error: state.error,
+            save:state.save,
             setError,
             setLoading,
             getConnections,
-            saveDataSource
+            saveDataSource,
+            initForm
         }}>
             {props.children}
         </FormContext.Provider>

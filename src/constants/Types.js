@@ -9,3 +9,4 @@ export const SET_LOADING = 'SET_LOADING';
 export const SET_CLOSE_SNACK = 'SET_CLOSE_SNACK';
 export const GET_CONNECTION = 'GET_CONNECTION';
 export const SAVE_DATASOURCE = 'SAVE_DATASOURCE';
+export const INIT_FORM = 'INIT_FORM';
