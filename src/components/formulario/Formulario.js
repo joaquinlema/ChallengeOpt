@@ -37,7 +37,7 @@ const Formulario = () => {
     const homeContext = useContext(HomeContext);
     const { connectionsList } = homeContext;
     const { initForm, saveDataSource, save } = formContext;
-
+    
     useEffect(() => {
         initForm();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -86,7 +86,9 @@ const Formulario = () => {
                     saveDataSource(dataSourceSchema);
                     setTimeout(() => {
                         setSubmitting(false);
-                        if (save) resetForm();
+                        if (save) 
+                            resetForm()
+                        
                     }, 500);
                 }}
             >

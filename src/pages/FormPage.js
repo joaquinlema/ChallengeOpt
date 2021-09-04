@@ -7,14 +7,15 @@ import FormContext from '../context/formContext/FormContext';
 
 const FormularioPage = () => {
 
-    let history = useHistory();
     const formContext = useContext(FormContext);
-    const { save, snackmsj,snackStatus,snackSeverity, onCloseSnack } = formContext;
+    const { save, snackmsj,snackStatus,snackSeverity, onCloseSnack, initForm } = formContext;
+    let history = useHistory();
 
-    if (save) {
+    if(save){
         history.push('/');
+        initForm();
     }
-
+    
     return (
         <Grid container>
             <Grid item xs={12}>

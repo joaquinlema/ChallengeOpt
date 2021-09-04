@@ -12,7 +12,7 @@ export default (state, action) => {
         case SAVE_DATASOURCE:
             return {
                 ...state,
-                save: true
+                save: true,
             }
         case SET_ERROR:
             return {
