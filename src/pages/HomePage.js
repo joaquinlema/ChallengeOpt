@@ -7,11 +7,12 @@ import Mensaje from '../components/userMsj/Mensaje';
 const HomePage = () => {
 
     const homeContext = useContext(HomeContext);
-    const {setLoading,getDataSources, snackStatus,snackmsj,snackSeverity,onCloseSnack } = homeContext;
+    const {setLoading,getDataSources, snackStatus,snackmsj,snackSeverity,onCloseSnack,getConnections } = homeContext;
 
     useEffect(() => {
         setLoading();
         getDataSources();
+        getConnections();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

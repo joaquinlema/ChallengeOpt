@@ -7,6 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import { Select, TextField } from 'formik-material-ui';
 import DeleteIcon from '@material-ui/icons/Delete';
 import FormContext from '../../context/formContext/FormContext';
+import HomeContext from '../../context/homeContext/HomeContext';
 
 const useStyles = makeStyles((theme) => ({
     grid: {
@@ -27,11 +28,12 @@ const useStyles = makeStyles((theme) => ({
 const Formulario = () => {
     const classes = useStyles();
     const formContext = useContext(FormContext);
-    const { connectionList, initForm, getConnections, saveDataSource, save } = formContext;
+    const homeContext = useContext(HomeContext);
+    const {connectionList} = homeContext;
+    const {initForm, saveDataSource, save } = formContext;
 
     useEffect(() => {
         initForm();
-        getConnections();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -69,19 +71,6 @@ const Formulario = () => {
                           }
                         ]
                       }
-                    // {
-                    //     "title": values.title,
-                    //     "code": values.code,
-                    //     "connection_id": Number(values.connection),
-                    //     "query": values.query,
-                    //     "parameters": [
-                    //         {
-                    //             "name": "lookup",
-                    //             "type": "string",
-                    //             "default_value": "test"
-                    //         }
-                    //     ]
-                    // };
                     saveDataSource(dataSourceSchema);
                     setTimeout(() => {
                         setSubmitting(false);

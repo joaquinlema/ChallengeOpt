@@ -1,4 +1,4 @@
-import { GET_CONNECTION, INIT_FORM, SAVE_DATASOURCE, SET_CLOSE_SNACK, SET_ERROR } from "../../constants/Types";
+import { INIT_FORM, SAVE_DATASOURCE, SET_CLOSE_SNACK, SET_ERROR } from "../../constants/Types";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state, action) => {
@@ -14,12 +14,6 @@ export default (state, action) => {
                 ...state,
                 save: true
             }
-        case GET_CONNECTION:
-            return {
-                ...state,
-                connectionList: action.payload,
-                loading: false
-            };
         case SET_ERROR:
             return {
                 ...state,

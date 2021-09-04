@@ -1,6 +1,5 @@
 import { useReducer } from 'react';
-import { GET_CONNECTION, INIT_FORM, SAVE_DATASOURCE, SET_CLOSE_SNACK, SET_ERROR, SET_LOADING } from "../../constants/Types";
-import ConnectionsService from "../../api/service/Connections.service";
+import { INIT_FORM, SAVE_DATASOURCE, SET_CLOSE_SNACK, SET_ERROR, SET_LOADING } from "../../constants/Types";
 import FormContext from "./FormContext";
 import FormReducer from "./FormReducer";
 import DataSourceService from '../../api/service/DataSource.service';
@@ -18,19 +17,6 @@ const FormState = (props) => {
 
     // eslint-disable-next-line no-unused-vars
     const [state, dispatch] = useReducer(FormReducer, initialState);
-
-    const getConnections = async () => {
-        try {
-            const { data } = await ConnectionsService.getAll('total=false');
-
-            dispatch({
-                type: GET_CONNECTION,
-                payload: data.data
-            });
-        } catch (error) {
-            setError(error);
-        }
-    }
 
     const initForm = () => {
         dispatch({
@@ -85,7 +71,6 @@ const FormState = (props) => {
             onCloseSnack,
             setError,
             setLoading,
-            getConnections,
             saveDataSource,
             initForm
         }}>
