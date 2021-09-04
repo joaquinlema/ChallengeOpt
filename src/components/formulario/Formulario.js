@@ -1,37 +1,54 @@
 import React from 'react';
 import { Formik, Form, Field } from 'formik';
-import { Button, LinearProgress, Grid, Box, Typography, FormControl, InputLabel, MenuItem } from '@material-ui/core';
+import { Button, LinearProgress, Grid, Box, Typography, FormControl, InputLabel, MenuItem, makeStyles, IconButton } from '@material-ui/core';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import DateFnsUtils from '@date-io/date-fns';
 import Divider from '@material-ui/core/Divider';
-import { Select } from 'formik-material-ui';
+import { Select, TextField } from 'formik-material-ui';
+import DeleteIcon from '@material-ui/icons/Delete';
+
+const useStyles = makeStyles((theme) => ({
+    grid: {
+        width: '100%',
+    },
+    contenedor: {
+        marginTop: '2%',
+        marginBottom: '2%'
+    },
+    divider: {
+        width: '100%',
+        marginTop: '1%',
+        marginBottom: '1%'
+    }
+}));
+
 
 const Formulario = () => {
+    const classes = useStyles();
 
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Formik
                 initialValues={{
                     title: '',
-                    code: 'Autocomplete',
-                    connection: 1,
+                    code: '',
+                    connection: 'String',
                     query: '',
                     paramList: [],
                     paramName: '',
-                    paramType: '',
+                    paramType: 'String',
                     paramDefaultValue: ''
                 }}
                 validate={values => {
                     let errors = {};
 
-                    if (!values.file) {
-                        errors.file = 'Requerido';
-                    }
-
                     return errors;
                 }}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
+                    setSubmitting(true);
+                    
                     setTimeout(() => {
+                        alert('guardado')
                         setSubmitting(false);
                         resetForm();
                     }, 500);
@@ -47,16 +64,16 @@ const Formulario = () => {
                                     </Typography>
                                 </Grid>
                             </Grid>
-                            <Grid container spacing={2}>
+                            <Grid container className={classes.contenedor} spacing={2}>
                                 <Grid item xs={4} md={4} lg={4}>
-                                    <Field name="title" type="text" label="Title" placeholder="Title" />
+                                    <Field className={classes.grid} component={TextField} name="title" variant="outlined" type="text" label="Title" placeholder="Title" />
                                 </Grid>
                                 <Grid item xs={4} md={4} lg={4}>
-                                    <Field name="code" type="text" label="Code" placeholder="Code" />
+                                    <Field className={classes.grid} component={TextField} name="code" variant="outlined" type="text" label="Code" placeholder="Code" />
                                 </Grid>
                                 <Grid item xs={4} md={4} lg={4}>
-                                    <FormControl>
-                                        <InputLabel htmlFor="connection-simple">connection</InputLabel>
+                                    <FormControl className={classes.grid} variant="outlined">
+                                        <InputLabel htmlFor="connection-simple">Connection</InputLabel>
                                         <Field
                                             component={Select}
                                             name="connection"
@@ -70,13 +87,18 @@ const Formulario = () => {
                                         </Field>
                                     </FormControl>
                                 </Grid>
+                            </Grid>
 
+                            <Grid container className={classes.contenedor}>
                                 <Grid item xs={12} md={12} lg={12}>
-                                    <Field name="query" component="textarea" rows="4" label="Query" placeholder="" />
+                                    <Typography variant='h6'>
+                                        Query
+                                    </Typography>
+                                    <Field className={classes.grid} name="query" component="textarea" rows="5" label="Query" placeholder="" />
                                 </Grid>
                             </Grid>
 
-                            <Grid container>
+                            <Grid container className={classes.contenedor}>
                                 <Grid item xs={2}>
                                     <Typography variant="h6" gutterBottom>
                                         Parameters
@@ -93,20 +115,23 @@ const Formulario = () => {
                                     </Button>
                                 </Grid>
 
-                                <Divider />
+                                <Divider className={classes.divider} />
 
-                                <Grid container spacing={2}>
-                                    <Grid item xs={4} md={4} lg={4}>
-                                        <Field name="paramname" type="text" label="Title" placeholder="Title" />
+                                <Grid container className={classes.contenedor} spacing={2}>
+                                    <Grid item xs={1}>
+
                                     </Grid>
-                                    <Grid item xs={4} md={4} lg={4}>
-                                        <FormControl>
-                                            <InputLabel htmlFor="paramtype-simple">paramtype</InputLabel>
+                                    <Grid item xs={3} md={3} lg={3}>
+                                        <Field className={classes.grid} component={TextField} name="paramname" type="text" label="Title" placeholder="Title" />
+                                    </Grid>
+                                    <Grid item xs={3} md={3} lg={3}>
+                                        <FormControl className={classes.grid}>
+                                            <InputLabel htmlFor="paramType-simple">ParamType</InputLabel>
                                             <Field
                                                 component={Select}
-                                                name="paramtype"
+                                                name="paramType"
                                                 inputProps={{
-                                                    id: 'paramtype-simple',
+                                                    id: 'paramType-simple',
                                                 }}
                                             >
                                                 <MenuItem value={'String'}>String</MenuItem>
@@ -115,12 +140,20 @@ const Formulario = () => {
                                             </Field>
                                         </FormControl>
                                     </Grid>
-                                    <Grid item xs={4} md={4} lg={4}>
-                                        <Field name="paramDefaultValue" type="text" label="Code" placeholder="Code" />
+                                    <Grid item xs={3} md={3} lg={3}>
+                                        <Field className={classes.grid} component={TextField} name="paramDefaultValue" type="text" label="Code" placeholder="Code" />
+                                    </Grid>
+                                    <Grid item xs={1} md={1} lg={1}>
+                                        <IconButton aria-label="delete">
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </Grid>
+                                    <Grid item xs={1}>
+
                                     </Grid>
                                 </Grid>
 
-                                <Divider />
+                                <Divider className={classes.divider} />
 
                             </Grid>
 
@@ -129,7 +162,7 @@ const Formulario = () => {
                             </Grid>
 
 
-                            <Grid item container justifyContent='flex-end' xs={12} md={12} lg={12} spacing={2}>
+                            <Grid container justifyContent='flex-end' className={classes.contenedor}>
                                 <Button
                                     variant="contained"
                                     color="primary"
