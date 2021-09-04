@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Button, LinearProgress, Grid, Box, Typography, FormControl, InputLabel, MenuItem, makeStyles, IconButton } from '@material-ui/core';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
@@ -6,6 +6,7 @@ import DateFnsUtils from '@date-io/date-fns';
 import Divider from '@material-ui/core/Divider';
 import { Select, TextField } from 'formik-material-ui';
 import DeleteIcon from '@material-ui/icons/Delete';
+import FormContext from '../../context/formContext/FormContext';
 
 const useStyles = makeStyles((theme) => ({
     grid: {
@@ -25,6 +26,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Formulario = () => {
     const classes = useStyles();
+    const formContext = useContext(FormContext);
+    const { connectionList } = formContext;
 
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -46,7 +49,7 @@ const Formulario = () => {
                 }}
                 onSubmit={(values, { setSubmitting, resetForm }) => {
                     setSubmitting(true);
-                    
+
                     setTimeout(() => {
                         alert('guardado')
                         setSubmitting(false);
@@ -81,9 +84,10 @@ const Formulario = () => {
                                                 id: 'connection-simple',
                                             }}
                                         >
-                                            <MenuItem value={'String'}>String</MenuItem>
-                                            <MenuItem value={'Integer'}>Integer</MenuItem>
-                                            <MenuItem value={'date'}>date</MenuItem>
+                                            {connectionList.length > 0 && connectionList.map(elem => (
+                                                <MenuItem value={elem}>elem</MenuItem>
+                                            ))
+                                            }
                                         </Field>
                                     </FormControl>
                                 </Grid>
