@@ -3,6 +3,7 @@ import { GET_CONNECTION, SET_ERROR, SET_LOADING } from "../../constants/Types";
 import ConnectionsService from "../../api/service/Connections.service";
 import FormContext from "./FormContext";
 import FormReducer from "./FormReducer";
+import DataSourceService from '../../api/service/DataSource.service';
 
 const FormState = (props) => {
     const initialState = {
@@ -19,6 +20,21 @@ const FormState = (props) => {
 
         try {
             const { data } = await ConnectionsService.getAll('total=false');
+
+            dispatch({
+                type: GET_CONNECTION,
+                payload: data.data
+            });
+        } catch (error) {
+            setError(error);
+        }
+
+    }
+
+    const saveDataSource = async (newDataSource) => {
+
+        try {
+            const { data } = await DataSourceService.create(newDataSource);
 
             dispatch({
                 type: GET_CONNECTION,
@@ -52,6 +68,7 @@ const FormState = (props) => {
             setError,
             setLoading,
             getConnections,
+            saveDataSource
         }}>
             {props.children}
         </FormContext.Provider>

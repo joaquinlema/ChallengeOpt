@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { Button, LinearProgress, Grid, Box, Typography, FormControl, InputLabel, MenuItem, makeStyles, IconButton } from '@material-ui/core';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
@@ -27,8 +27,12 @@ const useStyles = makeStyles((theme) => ({
 const Formulario = () => {
     const classes = useStyles();
     const formContext = useContext(FormContext);
-    const { connectionList } = formContext;
+    const { connectionList,getConnections } = formContext;
 
+    useEffect(() => {
+        getConnections();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Formik
