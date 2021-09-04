@@ -66,7 +66,7 @@ const About = () => {
                 </Typography>
             </Grid>
             {dataAbout.map((elem, index) =>
-                <Grid key={index} item xs={3}>
+                <Grid key={index} item md={3} xs={12}>
                     <CardAbout titulo={elem.titulo} descripcion={elem.descripcion} image={elem.image} />
                 </Grid>
             )}
