@@ -7,3 +7,4 @@ export const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqbGVtYSIsI
 export const GET_DATASOURCES = 'GET_DATASOURCES';
 export const SET_LOADING = 'SET_LOADING';
 export const SET_CLOSE_SNACK = 'SET_CLOSE_SNACK';
+export const GET_CONNECTION = 'GET_CONNECTION';

@@ -1,8 +1,8 @@
 import FormContext from "./FormContext";
 import HomeReducer from "./HomeReducer";
 import { useReducer } from 'react';
-import { GET_DATASOURCES, SET_ERROR, SET_LOADING } from "../../constants/Types";
-import DataSourceService from "../../api/service/DataSource.service";
+import { GET_CONNECTION, SET_ERROR, SET_LOADING } from "../../constants/Types";
+import ConnectionsService from "../../api/service/Connections.service";
 
 const FormState = (props) => {
     const initialState = {
@@ -18,10 +18,10 @@ const FormState = (props) => {
     const getConnections = async () => {
 
         try {
-            const { data } = await DataSourceService.getAll('total=false');
+            const { data } = await ConnectionsService.getAll('total=false');
 
             dispatch({
-                type: GET_DATASOURCES,
+                type: GET_CONNECTION,
                 payload: data.data
             });
         } catch (error) {

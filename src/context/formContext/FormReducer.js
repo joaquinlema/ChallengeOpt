@@ -1,12 +1,12 @@
-import { GET_DATASOURCES, SET_ERROR } from "../../constants/Types";
+import { GET_CONNECTION, SET_ERROR } from "../../constants/Types";
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default (state, action) => {
     switch (action.type) {
-        case GET_DATASOURCES:
+        case GET_CONNECTION:
             return {
                 ...state,
-                dataSourceList: action.payload,
+                connectionList: action.payload,
                 loading: false
             };
         case SET_ERROR:
