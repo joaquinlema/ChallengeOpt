@@ -77,6 +77,7 @@ const HomeState = (props) => {
             snackmsj: state.snackmsj,
             snackStatus: state.snackStatus,
             snackSeverity: state.snackSeverity,
+            connectionsList:state.connectionsList,
             getConnections,
             setError,
             setLoading,

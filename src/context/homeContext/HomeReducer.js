@@ -28,7 +28,7 @@ export default (state, action) => {
         case GET_CONNECTION:
             return {
                 ...state,
-                connectionList: action.payload,
+                connectionsList: action.payload,
                 loading: false
             };
         default:

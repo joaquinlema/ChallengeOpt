@@ -29,7 +29,7 @@ const Formulario = () => {
     const classes = useStyles();
     const formContext = useContext(FormContext);
     const homeContext = useContext(HomeContext);
-    const {connectionList} = homeContext;
+    const {connectionsList} = homeContext;
     const {initForm, saveDataSource, save } = formContext;
 
     useEffect(() => {
@@ -105,7 +105,7 @@ const Formulario = () => {
                                                 id: 'connection-simple',
                                             }}
                                         >
-                                            {connectionList.length > 0 && connectionList.map(elem => (
+                                            {connectionsList.length > 0 && connectionsList.map(elem => (
                                                 <MenuItem key={elem.id} value={elem.id}>{elem.title}</MenuItem>
                                             ))
                                             }
@@ -151,7 +151,7 @@ const Formulario = () => {
                                     </Grid>
                                     <Grid item xs={3} md={3} lg={3}>
                                         <FormControl className={classes.grid}>
-                                            <InputLabel htmlFor="paramType-simple">ParamType</InputLabel>
+                                            <InputLabel htmlFor="paramType-simple">Type</InputLabel>
                                             <Field
                                                 component={Select}
                                                 name="paramType"
