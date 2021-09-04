@@ -27,11 +27,7 @@ const FormState = (props) => {
     const saveDataSource = async (newDataSource) => {
 
         try {
-            const { data, message, errors } = await DataSourceService.create(newDataSource);
-            
-            if(errors.length > 0){
-                setError(message);
-            }
+            const { data } = await DataSourceService.create(newDataSource);
 
             dispatch({
                 type: SAVE_DATASOURCE,
@@ -53,7 +49,7 @@ const FormState = (props) => {
     const setError = (error) => {
         dispatch({
             type: SET_ERROR,
-            payload: 'ups Error Por favor revise los campos ' + error
+            payload: 'Error Por favor revise los campos ' + error
         });
     }
 

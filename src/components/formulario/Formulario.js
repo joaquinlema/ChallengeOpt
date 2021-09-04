@@ -191,7 +191,6 @@ const Formulario = () => {
                                                                         <MenuItem value={'integer'}>Integer</MenuItem>
                                                                         <MenuItem value={'date'}>date</MenuItem>
                                                                     </Field>
-                                                                    {/* <FormHelperText  className='Mui-error'>{(`errors.paramList[${index}].type` && `touched.paramList[${index}].type`) && `errors.paramList[${index}].type`}</FormHelperText> */}
                                                                 </FormControl>
                                                             </Grid>
                                                             <Grid item xs={3} md={3} lg={3}>
