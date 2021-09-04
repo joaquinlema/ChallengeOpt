@@ -8,7 +8,7 @@ const getAll = (query) => {
 };
 
 const create = (data) => {
-    return http.post(`${seccion},${data}`);
+    return http.post(`${seccion}`,data);
 };
 
 const getValuesById = (id, query) => {
