@@ -3,17 +3,19 @@ import { devUrl, token } from '../../constants/Types';
 
 const axiosInstance = axios.create({
   baseURL: `${devUrl}`,
-  headers: {'Access-Control-Allow-Origin':'*'}
+  // headers: {
+  //   'Access-Control-Allow-Origin': '*',
+  //   'Content-Type': 'application/json'
+  // }
 });
 
-axiosInstance.defaults.headers.common['Authorization'] = token;
 axiosInstance.interceptors.request.use(function (config) {
 
-  if(token){
-    config.headers.Authorization =  `Bearer ${token}` ;
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
-  else{
-    config.headers.Authorization =  null;
+  else {
+    config.headers.Authorization = null;
   }
 
   return config;

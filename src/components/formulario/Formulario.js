@@ -132,7 +132,9 @@ const Formulario = () => {
                                     <Typography variant='h6'>
                                         Query
                                     </Typography>
-                                    <Field className={classes.grid} name="query" component="textarea" rows="5" label="Query" placeholder="" />
+                                    <Field className={classes.grid} name="query" component="textarea" rows="5" label="Query" placeholder="" aria-invalid={(errors.query)}/>
+                                    <FormHelperText className='Mui-error'>{(errors.query && touched.query) && errors.query}</FormHelperText >
+
                                 </Grid>
                             </Grid>
 
@@ -185,8 +187,8 @@ const Formulario = () => {
                                                                             id: 'type-simple',
                                                                         }}
                                                                     >
-                                                                        <MenuItem value={'String'}>String</MenuItem>
-                                                                        <MenuItem value={'Integer'}>Integer</MenuItem>
+                                                                        <MenuItem value={'string'}>string</MenuItem>
+                                                                        <MenuItem value={'integer'}>Integer</MenuItem>
                                                                         <MenuItem value={'date'}>date</MenuItem>
                                                                     </Field>
                                                                     {/* <FormHelperText  className='Mui-error'>{(`errors.paramList[${index}].type` && `touched.paramList[${index}].type`) && `errors.paramList[${index}].type`}</FormHelperText> */}
