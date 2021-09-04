@@ -31,12 +31,6 @@ const Formulario = () => {
     const homeContext = useContext(HomeContext);
     const { connectionsList } = homeContext;
     const { initForm, saveDataSource, save } = formContext;
-    const paramItem = {
-        "name": "",
-        "type": "string",
-        "default_value": ""
-    };
-    const [params, setparams] = useState([paramItem]);
 
     useEffect(() => {
         initForm();
@@ -88,7 +82,7 @@ const Formulario = () => {
                     }, 500);
                 }}
             >
-                {({ submitForm, isSubmitting, errors, touched, resetForm, setFieldValue, values }) => (
+                {({ submitForm, isSubmitting, errors, touched, resetForm, setFieldValue, values, setValues }) => (
                     <Box m={2}>
                         <Form>
                             <Grid container>
@@ -144,7 +138,11 @@ const Formulario = () => {
                                         variant="contained"
                                         color="default"
                                         disabled={isSubmitting}
-                                        onClick={() => console.log('add')}
+                                        onClick={() => {values.paramList.push({
+                                            "name": "",
+                                            "type": "string",
+                                            "default_value": ""
+                                        }); setValues(values)}}
                                     >
                                         Add Parameter
                                     </Button>
@@ -155,87 +153,48 @@ const Formulario = () => {
                                 <Grid container className={classes.contenedor} spacing={2}>
                                     <FieldArray name="paramList">
                                         {({ insert, remove, push }) => (
-                                            <div>
+                                            <Fragment>
                                                 {values.paramList.length > 0 &&
                                                     values.paramList.map((elem, index) => (
-                                                        <div className="row" key={index}>
-                                                            <div className="col">
-                                                                <label htmlFor={`paramList.${index}.name`}>Title</label>
-                                                                <Field
-                                                                    name={`paramList.${index}.name`}
-                                                                    placeholder="Jane Doe"
-                                                                    type="text"
-                                                                />
-                                                                
-                                                            </div>
-                                                            <div className="col">
-                                                                <label htmlFor={`paramList.${index}.default_value`}>Code</label>
-                                                                <Field
-                                                                    name={`paramList.${index}.default_value`}
-                                                                    placeholder="jane@acme.com"
-                                                                    type="text"
-                                                                />
-                                                
-                                                            </div>
-                                                            <div className="col">
-                                                                <button
-                                                                    type="button"
-                                                                    className="secondary"
-                                                                    onClick={() => remove(index)}
-                                                                >
-                                                                    X
-                                                                </button>
-                                                            </div>
-                                                        </div>
+                                                        <Fragment key={index}>
+                                                            <Grid item xs={1}>
+
+                                                            </Grid>
+                                                            <Grid item xs={3} md={3} lg={3}>
+                                                                <Field className={classes.grid} component={TextField} name={`paramList.${index}.name`} type="text" label="Title" placeholder="Title" />
+                                                            </Grid>
+                                                            <Grid item xs={3} md={3} lg={3}>
+                                                                <FormControl className={classes.grid}>
+                                                                    <InputLabel htmlFor="type-simple">Type</InputLabel>
+                                                                    <Field
+                                                                        component={Select}
+                                                                        name={`paramList.${index}.type`}
+                                                                        inputProps={{
+                                                                            id: 'type-simple',
+                                                                        }}
+                                                                    >
+                                                                        <MenuItem value={'String'}>String</MenuItem>
+                                                                        <MenuItem value={'Integer'}>Integer</MenuItem>
+                                                                        <MenuItem value={'date'}>date</MenuItem>
+                                                                    </Field>
+                                                                </FormControl>
+                                                            </Grid>
+                                                            <Grid item xs={3} md={3} lg={3}>
+                                                                <Field className={classes.grid} component={TextField} name={`paramList.${index}.default_value`} type="text" label="Code" placeholder="Code" />
+                                                            </Grid>
+                                                            <Grid item xs={1} md={1} lg={1}>
+                                                                <IconButton aria-label="delete" onClick={() => remove(index)}>
+                                                                    <DeleteIcon />
+                                                                </IconButton>
+                                                            </Grid>
+                                                            <Grid item xs={1}>
+
+                                                            </Grid>
+                                                        </Fragment>
                                                     ))}
-                                                <button
-                                                    type="button"
-                                                    className="secondary"
-                                                    onClick={() => push({ name: '', email: '' })}
-                                                >
-                                                    Add Friend
-                                                </button>
-                                            </div>
+                                            </Fragment>
                                         )}
                                     </FieldArray>
-                                    {/* {params.length > 0 && params.map((item, index) => (
-                                        <Fragment key={index}>
-                                            <Grid item xs={1}>
-
-                                            </Grid>
-                                            <Grid item xs={3} md={3} lg={3}>
-                                                <Field className={classes.grid} component={TextField} name="paramname" type="text" label="Title" placeholder="Title" />
-                                            </Grid>
-                                            <Grid item xs={3} md={3} lg={3}>
-                                                <FormControl className={classes.grid}>
-                                                    <InputLabel htmlFor="paramType-simple">Type</InputLabel>
-                                                    <Field
-                                                        component={Select}
-                                                        name="paramType"
-                                                        inputProps={{
-                                                            id: 'paramType-simple',
-                                                        }}
-                                                    >
-                                                        <MenuItem value={'String'}>String</MenuItem>
-                                                        <MenuItem value={'Integer'}>Integer</MenuItem>
-                                                        <MenuItem value={'date'}>date</MenuItem>
-                                                    </Field>
-                                                </FormControl>
-                                            </Grid>
-                                            <Grid item xs={3} md={3} lg={3}>
-                                                <Field className={classes.grid} component={TextField} name="paramDefaultValue" type="text" label="Code" placeholder="Code" />
-                                            </Grid>
-                                            <Grid item xs={1} md={1} lg={1}>
-                                                <IconButton aria-label="delete">
-                                                    <DeleteIcon />
-                                                </IconButton>
-                                            </Grid>
-                                            <Grid item xs={1}>
-
-                                            </Grid>
-                                        </Fragment>
-                                    ))} */}
-
                                 </Grid>
 
                                 <Divider className={classes.divider} />
@@ -261,7 +220,7 @@ const Formulario = () => {
                     </Box>
                 )}
             </Formik>
-        </MuiPickersUtilsProvider>
+        </MuiPickersUtilsProvider >
     );
 };
 
